@@ -102,3 +102,66 @@ let codes = {
 for (let code in codes) {
   console.log(code); // 1, 41, 44, 49
 }
+
+// Copying object by reference
+
+user = { name: "John" };
+
+let admin = user; // copy the reference
+
+admin.name = 'Pete'; // changed by the "admin" reference
+
+console.log(user.name); // 'Pete', changes are seen from the "user" reference
+
+// Cloning objects
+// Method 1 - for -in - Cloning/Copying
+user = {
+  name: "John",
+  age: 30
+};
+
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+// now clone is a fully independent object with the same content
+clone.name = "Pete"; // changed the data in it
+
+console.log( user.name ); // still John in the original object
+
+// Method 2 - Object.assign(), cloning
+user = {
+  name: "John",
+  age: 30
+};
+
+let clone = Object.assign({}, user);
+
+console.log(clone.name); // John
+console.log(clone.age); // 30
+
+// Merging objects
+
+user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+Object.assign(user, permissions1, permissions2)
+
+console.log(user)
+
+// Can't use Object.assign for cloning NESTED objects
+
+user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+let copyUser = structuredClone(user)
