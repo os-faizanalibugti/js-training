@@ -44,9 +44,9 @@ user = {
 
 // Dot notation won't work, use bracket notation insstead
 
-console.log(user["like birds"])
+console.log(user["like birds"]);
 
-delete user["like birds"]
+delete user["like birds"];
 
 // Property value shorthand
 
@@ -69,34 +69,34 @@ console.log(obj.__proto__);
 // Check if property exists in object
 user = {};
 
-console.log( user.noSuchProperty === undefined ); // true means "no such property"
+console.log(user.noSuchProperty === undefined); // true means "no such property"
 
 user = { name: "John", age: 30 };
 
-    // property name  // object
-console.log( "age" in user ); // true, user.age exists
-console.log( "blabla" in user ); // false, user.blabla doesn't exist
+// property name  // object
+console.log("age" in user); // true, user.age exists
+console.log("blabla" in user); // false, user.blabla doesn't exist
 
 // Iterate over objects
 user = {
   name: "John",
   age: 30,
-  isAdmin: true
+  isAdmin: true,
 };
 
 for (let key in user) {
   // keys
-  console.log( key );  // name, age, isAdmin
+  console.log(key); // name, age, isAdmin
   // values for the keys
-  console.log( user[key] ); // John, 30, true
+  console.log(user[key]); // John, 30, true
 }
 
 let codes = {
-  "49": "Germany",
-  "41": "Switzerland",
-  "44": "Great Britain",
+  49: "Germany",
+  41: "Switzerland",
+  44: "Great Britain",
   // ..,
-  "1": "USA"
+  1: "USA",
 };
 
 for (let code in codes) {
@@ -109,7 +109,7 @@ user = { name: "John" };
 
 let admin = user; // copy the reference
 
-admin.name = 'Pete'; // changed by the "admin" reference
+admin.name = "Pete"; // changed by the "admin" reference
 
 console.log(user.name); // 'Pete', changes are seen from the "user" reference
 
@@ -117,7 +117,7 @@ console.log(user.name); // 'Pete', changes are seen from the "user" reference
 // Method 1 - for -in - Cloning/Copying
 user = {
   name: "John",
-  age: 30
+  age: 30,
 };
 
 let clone = {}; // the new empty object
@@ -130,15 +130,15 @@ for (let key in user) {
 // now clone is a fully independent object with the same content
 clone.name = "Pete"; // changed the data in it
 
-console.log( user.name ); // still John in the original object
+console.log(user.name); // still John in the original object
 
 // Method 2 - Object.assign(), cloning
 user = {
   name: "John",
-  age: 30
+  age: 30,
 };
 
-let clone = Object.assign({}, user);
+clone = Object.assign({}, user);
 
 console.log(clone.name); // John
 console.log(clone.age); // 30
@@ -150,9 +150,9 @@ user = { name: "John" };
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
-Object.assign(user, permissions1, permissions2)
+Object.assign(user, permissions1, permissions2);
 
-console.log(user)
+console.log(user);
 
 // Can't use Object.assign for cloning NESTED objects
 
@@ -160,8 +160,46 @@ user = {
   name: "John",
   sizes: {
     height: 182,
-    width: 50
-  }
+    width: 50,
+  },
 };
 
-let copyUser = structuredClone(user)
+// let copyUser = structuredClone(user);
+
+// this
+
+user = {
+  name: "John",
+  age: 30,
+  sayHi: function () {
+    // "this" is the "current object"
+    console.log(this.name);
+  },
+};
+
+user.sayHi();
+
+let calculator = {
+  a: 0,
+  b: 0,
+  add: function () {
+    console.log(this.a + this.b);
+  },
+  subtract: function () {
+    console.log(this.a - this.b);
+  },
+  multiply: function () {
+    console.log(this.a * this.b);
+  },
+  divide: function () {
+    console.log(this.a/this.b);
+  },
+};
+
+calculator.a = 10;
+calculator.b = 20;
+
+calculator.add();
+calculator.multiply();
+calculator.subtract();
+calculator.divide();
