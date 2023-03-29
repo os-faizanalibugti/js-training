@@ -105,6 +105,9 @@ for (let code in codes) {
 
 // Copying object by reference
 
+// A variable assigned to an object stores not the object itself, 
+// but its “address in memory” – in other words “a reference” to it.
+
 user = { name: "John" };
 
 let admin = user; // copy the reference
